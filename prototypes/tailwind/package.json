@@ -1,0 +1,12 @@
+{
+  "name": "thesis-prototype-tailwind",
+  "version": "1.0.0",
+  "description": "Tailwind CSS implementation of AdminPanel X prototype for bachelor thesis comparison.",
+  "scripts": {
+    "build": "tailwindcss -i ./input.css -o ./dist/output.css --minify",
+    "watch": "tailwindcss -i ./input.css -o ./dist/output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}

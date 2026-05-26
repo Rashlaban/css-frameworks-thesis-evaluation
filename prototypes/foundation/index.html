@@ -1,0 +1,612 @@
+<!--
+Implementation: Foundation for Sites 6
+Reference prototype: AdminPanel X
+Purpose: standardized CSS framework comparison
+Setup: Foundation CDN static implementation
+Custom CSS used: yes
+JavaScript used: Foundation responsive menu only
+Sections preserved: navigation, header, summary-cards, activity, form, footer
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdminPanel X - Foundation 6</title>
+    <!-- Foundation CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css">
+
+    <style>
+        /* Framework-specific custom CSS required for visual equivalence */
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --border-color: #e5e7eb;
+            --radius-md: 0.375rem;
+            --radius-lg: 0.5rem;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Container & Alignment */
+        .grid-container {
+            max-width: 1280px;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            width: 100%;
+        }
+
+        /* Navigation Header Custom Stylings */
+        .top-bar-container {
+            background-color: var(--bg-surface);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .title-bar {
+            background-color: var(--bg-surface);
+            color: var(--text-main);
+            padding: 1rem 0;
+        }
+
+        .brand-text,
+        .brand-text-desktop {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 0;
+        }
+
+        .brand-text:hover,
+        .brand-text:focus,
+        .brand-text-desktop:hover,
+        .brand-text-desktop:focus {
+            color: var(--text-main);
+        }
+
+        .brand-text-desktop {
+            margin-right: 1.5rem;
+        }
+
+        /* Navigation links styling */
+        .top-bar-container .menu>li>a.nav-link {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.25rem 0;
+            border-bottom: 2px solid transparent;
+            margin: 0 0.5rem;
+            background: transparent;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .top-bar-container .menu>li>a.nav-link:hover,
+        .top-bar-container .menu>li>a.nav-link:focus {
+            color: var(--text-main);
+            border-bottom-color: var(--border-color);
+        }
+
+        .top-bar-container .menu>li>a.nav-link.active {
+            color: var(--text-main);
+            border-bottom-color: var(--primary);
+        }
+
+        /* Navigation Hamburger styling override */
+        .menu-icon.dark::after {
+            background: var(--text-muted);
+            box-shadow: 0 7px 0 var(--text-muted), 0 14px 0 var(--text-muted);
+        }
+
+        .menu-icon.dark:hover::after {
+            background: var(--text-main);
+            box-shadow: 0 7px 0 var(--text-main), 0 14px 0 var(--text-main);
+        }
+
+        /* Header Section styling */
+        .header-section {
+            background-color: var(--bg-surface);
+            box-shadow: var(--shadow-sm);
+            margin-top: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Main Wrapper */
+        .main-section {
+            padding: 2rem 0;
+        }
+
+        /* Spacing sections */
+        .section-cards {
+            margin-bottom: 2rem;
+        }
+
+        .section-activity {
+            margin-bottom: 2rem;
+        }
+
+        .section-form {
+            margin-bottom: 2rem;
+        }
+
+        /* Card stylings */
+        .card {
+            background-color: var(--bg-surface);
+            border: none;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            height: 100%;
+            margin-bottom: 0;
+        }
+
+        .card-section {
+            padding: 1.25rem;
+        }
+
+        .card-label {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-value {
+            font-size: 1.875rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        /* Section titles */
+        .section-title {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            margin-top: 0;
+            color: var(--text-main);
+        }
+
+        /* Activity Container box */
+        .activity-box {
+            background-color: var(--bg-surface);
+            box-shadow: var(--shadow);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: none;
+        }
+
+        .box-header {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-surface);
+        }
+
+        .search-input {
+            max-width: 300px;
+            margin-bottom: 0 !important;
+        }
+
+        .list-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-main);
+            transition: background-color 0.2s;
+        }
+
+        .list-item:last-child {
+            border-bottom: none;
+        }
+
+        .list-item:hover {
+            background-color: #f9fafb;
+            cursor: pointer;
+        }
+
+        /* Forms styling */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 0.25rem;
+        }
+
+        /* Select and inputs override */
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--border-color) !important;
+            border-radius: var(--radius-md) !important;
+            font-family: inherit;
+            font-size: 0.875rem;
+            height: auto;
+            margin-bottom: 0;
+            color: var(--text-main);
+            box-shadow: none !important;
+            background-color: var(--bg-surface);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 1px var(--primary) !important;
+            background-color: var(--bg-surface) !important;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Buttons custom overrides */
+        .button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            border: 1px solid transparent;
+            text-decoration: none;
+            transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+            margin: 0;
+        }
+
+        .button.primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .button.primary:hover,
+        .button.primary:focus {
+            background-color: var(--primary-hover);
+            color: white;
+        }
+
+        .button.secondary {
+            background-color: white;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .button.secondary:hover,
+        .button.secondary:focus {
+            background-color: #f9fafb;
+            color: var(--text-main);
+            border-color: var(--border-color);
+        }
+
+        /* Footer styling */
+        .footer-section {
+            background-color: var(--bg-surface);
+            border-top: 1px solid var(--border-color);
+            padding: 1.5rem 0;
+            margin-top: auto;
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin: 0;
+        }
+
+        .footer-links-menu {
+            background: transparent;
+            margin: 0;
+        }
+
+        .footer-link {
+            color: var(--text-muted) !important;
+            font-size: 0.875rem;
+            padding: 0 0.75rem !important;
+            transition: color 0.2s;
+            text-decoration: none;
+            background: transparent;
+        }
+
+        .footer-link:hover,
+        .footer-link:focus {
+            color: var(--text-main) !important;
+            background: transparent;
+        }
+
+        /* Responsive Mobile Overrides */
+        @media screen and (max-width: 639px) {
+            .top-bar-container {
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .top-bar {
+                padding: 0 0 1rem 0 !important;
+                background-color: var(--bg-surface) !important;
+                border-top: 1px solid var(--border-color);
+            }
+
+            .top-bar-container .menu>li>a.nav-link {
+                padding: 0.5rem 1rem !important;
+                border-bottom: none !important;
+                border-left: 4px solid transparent;
+                margin: 0.25rem 0 !important;
+                display: block;
+            }
+
+            .top-bar-container .menu>li>a.nav-link:hover {
+                background-color: #f9fafb !important;
+            }
+
+            .top-bar-container .menu>li>a.nav-link.active {
+                background-color: #f3f4f6 !important;
+                border-left-color: var(--primary);
+            }
+
+            .top-bar-right {
+                padding: 0.5rem 1rem 0 1rem !important;
+            }
+
+            .top-bar-right .button {
+                width: 100%;
+            }
+
+            .header-col-right {
+                margin-top: 1rem;
+            }
+
+            .header-actions {
+                display: flex;
+                gap: 0.75rem;
+            }
+
+            .header-actions .button {
+                flex: 1;
+            }
+
+            .footer-col-right {
+                margin-top: 1rem;
+            }
+        }
+
+        @media screen and (min-width: 640px) {
+            .top-bar {
+                display: flex !important;
+            }
+
+            .header-col-right {
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="top-bar-container" data-section="navigation">
+        <div class="grid-container">
+            <!-- Mobile Brand Bar (Visible only on small screens) -->
+            <div class="title-bar show-for-small-only" data-responsive-toggle="responsive-menu" data-hide-for="medium">
+                <a href="#" class="brand-text">AdminPanel X</a>
+                <button class="menu-icon dark" type="button" data-toggle="responsive-menu" aria-label="Toggle menu"
+                    style="margin-left: auto;"></button>
+            </div>
+
+            <!-- Responsive top-bar navigation -->
+            <div class="top-bar" id="responsive-menu" style="display: none;">
+                <div class="top-bar-left">
+                    <ul class="menu vertical medium-horizontal">
+                        <li class="menu-text hide-for-small-only" style="padding-left: 0; padding-right: 1.5rem;">
+                            <a href="#" class="brand-text-desktop">AdminPanel X</a>
+                        </li>
+                        <li><a href="#" class="nav-link active">Dashboard</a></li>
+                        <li><a href="#" class="nav-link">Reports</a></li>
+                        <li><a href="#" class="nav-link">Users</a></li>
+                        <li><a href="#" class="nav-link">Settings</a></li>
+                    </ul>
+                </div>
+                <div class="top-bar-right">
+                    <ul class="menu vertical medium-horizontal">
+                        <li>
+                            <button type="button" class="button primary">Create New</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header-section" data-section="header">
+        <div class="grid-container">
+            <div class="grid-x grid-margin-x align-middle">
+                <div class="cell small-12 medium-8 header-col-left">
+                    <h1 class="page-title">Project Overview</h1>
+                    <p class="page-subtitle">Monitor key interface elements and manage dashboard content.</p>
+                </div>
+                <div class="cell small-12 medium-4 text-left medium-text-right header-col-right">
+                    <div class="header-actions">
+                        <button type="button" class="button secondary">Export</button>
+                        <button type="button" class="button primary">Create New</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-section">
+        <div class="grid-container">
+            <!-- Summary Cards -->
+            <div class="section-cards" data-section="summary-cards">
+                <div class="grid-x grid-margin-x grid-margin-y">
+                    <div class="cell small-12 medium-6 large-3">
+                        <div class="card">
+                            <div class="card-section">
+                                <dl style="margin: 0;">
+                                    <dt class="card-label">Active Users</dt>
+                                    <dd class="card-value">1,248</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell small-12 medium-6 large-3">
+                        <div class="card">
+                            <div class="card-section">
+                                <dl style="margin: 0;">
+                                    <dt class="card-label">New Orders</dt>
+                                    <dd class="card-value">86</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell small-12 medium-6 large-3">
+                        <div class="card">
+                            <div class="card-section">
+                                <dl style="margin: 0;">
+                                    <dt class="card-label">Open Tasks</dt>
+                                    <dd class="card-value">19</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell small-12 medium-6 large-3">
+                        <div class="card">
+                            <div class="card-section">
+                                <dl style="margin: 0;">
+                                    <dt class="card-label">Conversion Rate</dt>
+                                    <dd class="card-value">4.8%</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="section-activity" data-section="activity">
+                <h2 class="section-title">Recent Activity</h2>
+                <div class="card activity-box">
+                    <div class="card-section box-header">
+                        <input type="text" class="search-input" placeholder="Search activity...">
+                    </div>
+                    <ul class="list-group no-bullet" style="margin: 0;">
+                        <li class="list-item">User account updated</li>
+                        <li class="list-item">New request submitted</li>
+                        <li class="list-item">Invoice approved</li>
+                        <li class="list-item">Profile edited</li>
+                        <li class="list-item">Report generated</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Form Section -->
+            <div class="section-form" data-section="form">
+                <div class="card">
+                    <div class="card-section">
+                        <h3 class="section-title">Quick Contact / New Entry</h3>
+                        <form>
+                            <div class="grid-x grid-margin-x">
+                                <div class="cell small-12 medium-6">
+                                    <div class="form-group">
+                                        <label for="fullname" class="form-label">Full Name</label>
+                                        <input type="text" id="fullname">
+                                    </div>
+                                </div>
+                                <div class="cell small-12 medium-6">
+                                    <div class="form-group">
+                                        <label for="email" class="form-label">Email Address</label>
+                                        <input type="email" id="email">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="category" class="form-label">Category</label>
+                                <select id="category">
+                                    <option>Option 1</option>
+                                    <option>Option 2</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea id="message" rows="3"></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="button primary">Submit</button>
+                                <button type="button" class="button secondary">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-section" data-section="footer">
+        <div class="grid-container">
+            <div class="grid-x grid-margin-x align-middle">
+                <div class="cell small-12 medium-6 text-center medium-text-left">
+                    <p class="copyright">&copy; 2026 AdminPanel X</p>
+                </div>
+                <div class="cell small-12 medium-6 text-center medium-text-right footer-col-right">
+                    <ul class="menu footer-links-menu align-center medium-align-right">
+                        <li><a href="#" class="footer-link">Privacy</a></li>
+                        <li><a href="#" class="footer-link">Contact</a></li>
+                        <li><a href="#" class="footer-link">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Foundation Scripts CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/what-input@5.2.12/dist/what-input.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(document).foundation();
+        });
+    </script>
+</body>
+
+</html>

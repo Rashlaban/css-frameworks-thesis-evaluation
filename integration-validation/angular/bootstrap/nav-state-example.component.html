@@ -1,0 +1,36 @@
+<!-- Stateful header navigation showing Bootstrap 5 navbar components and active classes -->
+<nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
+    <div class="container-fluid">
+        <span class="navbar-brand fw-bold">AdminPanel X</span>
+        <!-- Mobile Hamburger Trigger -->
+        <button 
+            class="navbar-toggler" 
+            type="button" 
+            (click)="toggleMenu()"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Responsive Menu Collapse Container -->
+        <div class="collapse navbar-collapse" [class.show]="isOpen">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li *ngFor="let item of menuItems" class="nav-item">
+                    <button
+                        (click)="selectTab(item)"
+                        class="nav-link border-0 bg-transparent"
+                        [class.active]="activeTab === item"
+                        [class.fw-semibold]="activeTab === item"
+                        [class.text-primary]="activeTab === item"
+                    >
+                        {{ item }}
+                    </button>
+                </li>
+            </ul>
+            <div class="d-flex">
+                <button type="button" class="btn btn-primary">
+                    Create New
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>

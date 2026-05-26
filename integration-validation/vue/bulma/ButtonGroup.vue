@@ -1,0 +1,14 @@
+<template>
+  <!-- Action buttons grouping leveraging Bulma's inline button layout style classes -->
+  <div class="buttons">
+    <button type="submit" class="button is-primary">
+      Submit
+    </button>
+    <button type="button" class="button is-light">
+      Cancel
+    </button>
+  </div>
+</template>
+
+<script setup>
+</script>

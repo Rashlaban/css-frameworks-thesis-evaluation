@@ -1,0 +1,329 @@
+<!--
+Implementation: Bootstrap 5.3
+Reference prototype: AdminPanel X
+Purpose: standardized CSS framework comparison
+Setup: Bootstrap official CDN static implementation
+Custom CSS used: yes
+JavaScript used: Bootstrap navbar collapse only
+Sections preserved: navigation, header, summary-cards, activity, form, footer
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdminPanel X - Bootstrap</title>
+    <!-- Bootstrap 5.3 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Framework-specific custom CSS required for visual parity under the shared prototype requirements */
+        :root {
+            --bs-primary: #4f46e5;
+            --bs-primary-rgb: 79, 70, 229;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: #111827;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.5;
+        }
+
+        /* Container Max-Width Visual Parity */
+        .container-xl {
+            max-width: 1280px;
+        }
+
+        /* Primary Button Styling to match visual parity */
+        .btn-primary {
+            --bs-btn-bg: #4f46e5;
+            --bs-btn-border-color: #4f46e5;
+            --bs-btn-hover-bg: #4338ca;
+            --bs-btn-hover-border-color: #4338ca;
+            --bs-btn-active-bg: #4338ca;
+            --bs-btn-active-border-color: #4338ca;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            border-radius: 0.375rem;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        /* Custom Button Sizing matching vanilla padding precisely */
+        .btn {
+            padding: 0.5rem 1rem !important;
+            font-size: 0.875rem !important;
+        }
+
+        /* Custom secondary button style to match visual parity */
+        .btn-secondary-custom {
+            background-color: #ffffff;
+            color: #111827;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            transition: background-color 0.2s;
+            border-radius: 0.375rem;
+        }
+        .btn-secondary-custom:hover, .btn-secondary-custom:focus {
+            background-color: #f9fafb;
+            color: #111827;
+            border-color: #e5e7eb;
+        }
+
+        /* Form control focus overrides matching reference prototype */
+        .form-control:focus, .form-select:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 1px #4f46e5;
+            color: #111827;
+        }
+
+        /* Card and Shadows adjustments */
+        .card-shadow {
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            border-radius: 0.5rem;
+        }
+
+        /* Navigation block constraints */
+        .navbar {
+            min-height: 4rem;
+        }
+        .navbar-brand {
+            color: #111827 !important;
+        }
+
+        /* Active and hover border states for desktop navbar links */
+        @media (min-width: 576px) {
+            .navbar-nav {
+                gap: 1rem;
+            }
+            .navbar-nav .nav-link {
+                color: #6b7280 !important;
+                border-bottom: 2px solid transparent;
+                transition: color 0.2s, border-bottom-color 0.2s;
+            }
+            .navbar-nav .nav-link.active {
+                color: #111827 !important;
+                border-bottom-color: #4f46e5 !important;
+            }
+            .navbar-nav .nav-link:hover:not(.active) {
+                color: #111827 !important;
+                border-bottom-color: #e5e7eb !important;
+            }
+        }
+
+        /* Mobile collapse border-left active state styling */
+        @media (max-width: 575.98px) {
+            .navbar-nav .nav-link {
+                color: #6b7280 !important;
+                border-left: 4px solid transparent;
+                padding-left: 0.5rem !important;
+                transition: background-color 0.2s, border-left-color 0.2s;
+            }
+            .navbar-nav .nav-link.active {
+                background-color: #f3f4f6;
+                border-left-color: #4f46e5 !important;
+                color: #111827 !important;
+            }
+        }
+
+        /* List group and list hover transitions */
+        .list-group-item-action {
+            transition: background-color 0.2s;
+        }
+        .list-group-item-action:hover {
+            background-color: #f9fafb !important;
+        }
+
+        /* Footer link hover state */
+        .footer-link:hover {
+            color: #111827 !important;
+        }
+
+        /* Custom spacing helpers */
+        dl {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-sm bg-white border-bottom shadow-sm sticky-top" data-section="navigation">
+        <div class="container-xl">
+            <a class="navbar-brand fw-bold fs-5 py-0" href="#">AdminPanel X</a>
+            <button class="navbar-toggler border-0 p-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-sm-0 pt-2 pt-sm-0">
+                    <li class="nav-item">
+                        <a class="nav-link active fw-medium px-0 px-sm-3 py-2 py-sm-3" aria-current="page" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium px-0 px-sm-3 py-2 py-sm-3" href="#">Reports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium px-0 px-sm-3 py-2 py-sm-3" href="#">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium px-0 px-sm-3 py-2 py-sm-3" href="#">Settings</a>
+                    </li>
+                </ul>
+                <div class="d-sm-none pt-2 pb-3 border-top mt-2">
+                    <button type="button" class="btn btn-primary w-100 fw-medium">Create New</button>
+                </div>
+                <div class="d-none d-sm-flex">
+                    <button type="button" class="btn btn-primary fw-medium">Create New</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-white border-bottom shadow-sm py-4 mt-4" data-section="header">
+        <div class="container-xl">
+            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3">
+                <div>
+                    <h1 class="fw-bold mb-1" style="font-size: 1.875rem; line-height: 1.2; color: #111827;">Project Overview</h1>
+                    <p class="mb-0 text-secondary" style="font-size: 0.875rem;">Monitor key interface elements and manage dashboard content.</p>
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="button" class="btn btn-secondary-custom px-3 py-2 fw-medium">Export</button>
+                    <button type="button" class="btn btn-primary px-3 py-2 fw-medium">Create New</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-4">
+        <div class="container-xl">
+            
+            <!-- Summary Cards -->
+            <section class="mb-4" data-section="summary-cards">
+                <div class="row g-3">
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="card h-100 border-0 card-shadow">
+                            <div class="card-body p-4">
+                                <dl>
+                                    <dt class="text-secondary fw-medium mb-1 text-truncate" style="font-size: 0.875rem;">Active Users</dt>
+                                    <dd class="fw-semibold mb-0" style="font-size: 1.875rem; color: #111827;">1,248</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="card h-100 border-0 card-shadow">
+                            <div class="card-body p-4">
+                                <dl>
+                                    <dt class="text-secondary fw-medium mb-1 text-truncate" style="font-size: 0.875rem;">New Orders</dt>
+                                    <dd class="fw-semibold mb-0" style="font-size: 1.875rem; color: #111827;">86</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="card h-100 border-0 card-shadow">
+                            <div class="card-body p-4">
+                                <dl>
+                                    <dt class="text-secondary fw-medium mb-1 text-truncate" style="font-size: 0.875rem;">Open Tasks</dt>
+                                    <dd class="fw-semibold mb-0" style="font-size: 1.875rem; color: #111827;">19</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="card h-100 border-0 card-shadow">
+                            <div class="card-body p-4">
+                                <dl>
+                                    <dt class="text-secondary fw-medium mb-1 text-truncate" style="font-size: 0.875rem;">Conversion Rate</dt>
+                                    <dd class="fw-semibold mb-0" style="font-size: 1.875rem; color: #111827;">4.8%</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="mb-4" data-section="activity">
+                <h2 class="fw-medium mb-3" style="font-size: 1.125rem; color: #111827;">Recent Activity</h2>
+                <div class="card border-0 card-shadow overflow-hidden">
+                    <div class="card-header bg-white border-bottom p-3">
+                        <div style="max-width: 300px;">
+                            <input type="text" class="form-control" placeholder="Search activity...">
+                        </div>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item list-group-item-action text-dark fw-medium p-3" style="cursor: pointer;">User account updated</li>
+                        <li class="list-group-item list-group-item-action text-dark fw-medium p-3" style="cursor: pointer;">New request submitted</li>
+                        <li class="list-group-item list-group-item-action text-dark fw-medium p-3" style="cursor: pointer;">Invoice approved</li>
+                        <li class="list-group-item list-group-item-action text-dark fw-medium p-3" style="cursor: pointer;">Profile edited</li>
+                        <li class="list-group-item list-group-item-action text-dark fw-medium p-3" style="cursor: pointer;">Report generated</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Form Section -->
+            <section class="mb-4" data-section="form">
+                <div class="card border-0 card-shadow">
+                    <div class="card-body p-4">
+                        <h3 class="fw-medium mb-3" style="font-size: 1.125rem; color: #111827;">Quick Contact / New Entry</h3>
+                        <form>
+                            <div class="row g-3 mb-3">
+                                <div class="col-12 col-sm-6">
+                                    <div>
+                                        <label for="fullname" class="form-label fw-medium mb-1" style="font-size: 0.875rem; color: #111827;">Full Name</label>
+                                        <input type="text" id="fullname" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div>
+                                        <label for="email" class="form-label fw-medium mb-1" style="font-size: 0.875rem; color: #111827;">Email Address</label>
+                                        <input type="email" id="email" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="category" class="form-label fw-medium mb-1" style="font-size: 0.875rem; color: #111827;">Category</label>
+                                <select id="category" class="form-select">
+                                    <option>Option 1</option>
+                                    <option>Option 2</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label fw-medium mb-1" style="font-size: 0.875rem; color: #111827;">Message</label>
+                                <textarea id="message" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="d-flex gap-2 mt-4">
+                                <button type="submit" class="btn btn-primary fw-medium">Submit</button>
+                                <button type="button" class="btn btn-secondary-custom fw-medium">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-top py-4 mt-5" data-section="footer">
+        <div class="container-xl">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+                <div>
+                    <p class="mb-0 text-secondary" style="font-size: 0.875rem;">&copy; 2026 AdminPanel X</p>
+                </div>
+                <div>
+                    <ul class="list-unstyled d-flex gap-4 mb-0">
+                        <li><a href="#" class="text-secondary text-decoration-none footer-link" style="font-size: 0.875rem; transition: color 0.2s;">Privacy</a></li>
+                        <li><a href="#" class="text-secondary text-decoration-none footer-link" style="font-size: 0.875rem; transition: color 0.2s;">Contact</a></li>
+                        <li><a href="#" class="text-secondary text-decoration-none footer-link" style="font-size: 0.875rem; transition: color 0.2s;">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JavaScript Bundle (Navbar collapse logic only) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

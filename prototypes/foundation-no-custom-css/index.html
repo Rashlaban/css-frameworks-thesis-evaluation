@@ -1,0 +1,203 @@
+<!--
+Implementation: Foundation for Sites 6
+Variant: No custom CSS control version
+Reference prototype: AdminPanel X
+Purpose: exploratory comparison of structure-only Foundation implementation
+Setup: Foundation static implementation
+Custom CSS used: no
+Inline styles used: no
+JavaScript used: Foundation responsive menu only
+Sections preserved: navigation, header, summary-cards, activity, form, footer
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdminPanel X - Foundation 6 (No Custom CSS)</title>
+    <!-- Foundation CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="top-bar-container" data-section="navigation">
+        <div class="grid-container">
+            <!-- Mobile Brand Bar (Visible only on small screens) -->
+            <div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium">
+                <button class="menu-icon" type="button" data-toggle="responsive-menu" aria-label="Toggle menu"></button>
+                <div class="title-bar-title">AdminPanel X</div>
+            </div>
+
+            <!-- Responsive top-bar navigation -->
+            <div class="top-bar" id="responsive-menu">
+                <div class="top-bar-left">
+                    <ul class="menu vertical medium-horizontal">
+                        <li class="menu-text show-for-medium">
+                            <a href="#">AdminPanel X</a>
+                        </li>
+                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="#">Reports</a></li>
+                        <li><a href="#">Users</a></li>
+                        <li><a href="#">Settings</a></li>
+                    </ul>
+                </div>
+                <div class="top-bar-right">
+                    <ul class="menu vertical medium-horizontal">
+                        <li>
+                            <button type="button" class="button">Create New</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header-section" data-section="header">
+        <div class="grid-container">
+            <div class="grid-x grid-margin-x align-middle">
+                <div class="cell small-12 medium-8">
+                    <h1>Project Overview</h1>
+                    <p>Monitor key interface elements and manage dashboard content.</p>
+                </div>
+                <div class="cell small-12 medium-4 text-left medium-text-right">
+                    <div>
+                        <button type="button" class="button secondary">Export</button>
+                        <button type="button" class="button">Create New</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-section">
+        <div class="grid-container">
+            <!-- Summary Cards -->
+            <section class="section-cards" data-section="summary-cards">
+                <div class="grid-x grid-margin-x grid-margin-y">
+                    <div class="cell small-12 medium-6 large-3">
+                        <div class="card">
+                            <div class="card-section">
+                                <dl>
+                                    <dt>Active Users</dt>
+                                    <dd>1,248</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell small-12 medium-6 large-3">
+                        <div class="card">
+                            <div class="card-section">
+                                <dl>
+                                    <dt>New Orders</dt>
+                                    <dd>86</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell small-12 medium-6 large-3">
+                        <div class="card">
+                            <div class="card-section">
+                                <dl>
+                                    <dt>Open Tasks</dt>
+                                    <dd>19</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell small-12 medium-6 large-3">
+                        <div class="card">
+                            <div class="card-section">
+                                <dl>
+                                    <dt>Conversion Rate</dt>
+                                    <dd>4.8%</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="section-activity" data-section="activity">
+                <h2>Recent Activity</h2>
+                <div class="card">
+                    <div class="card-section">
+                        <input type="text" placeholder="Search activity...">
+                    </div>
+                    <ul class="no-bullet">
+                        <li>User account updated</li>
+                        <li>New request submitted</li>
+                        <li>Invoice approved</li>
+                        <li>Profile edited</li>
+                        <li>Report generated</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Form Section -->
+            <section class="section-form" data-section="form">
+                <div class="card">
+                    <div class="card-section">
+                        <h3>Quick Contact / New Entry</h3>
+                        <form>
+                            <div class="grid-x grid-margin-x">
+                                <div class="cell small-12 medium-6">
+                                    <label for="fullname">Full Name</label>
+                                    <input type="text" id="fullname">
+                                </div>
+                                <div class="cell small-12 medium-6">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email">
+                                </div>
+                            </div>
+                            <label for="category">Category</label>
+                            <select id="category">
+                                <option>Option 1</option>
+                                <option>Option 2</option>
+                            </select>
+                            <label for="message">Message</label>
+                            <textarea id="message" rows="3"></textarea>
+                            <div>
+                                <button type="submit" class="button">Submit</button>
+                                <button type="button" class="button secondary">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-section" data-section="footer">
+        <div class="grid-container">
+            <div class="grid-x grid-margin-x align-middle">
+                <div class="cell small-12 medium-6 text-center medium-text-left">
+                    <p>&copy; 2026 AdminPanel X</p>
+                </div>
+                <div class="cell small-12 medium-6 text-center medium-text-right">
+                    <ul class="menu align-center medium-align-right">
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Foundation Scripts CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/what-input@5.2.12/dist/what-input.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(document).foundation();
+        });
+    </script>
+</body>
+
+</html>

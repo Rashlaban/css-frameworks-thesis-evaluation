@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdminPanel X - Vanilla</title>
+    <style>
+        /* Vanilla CSS Implementation */
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --border-color: #e5e7eb;
+            --radius-md: 0.375rem;
+            --radius-lg: 0.5rem;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --container-width: 1280px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-sans); background-color: var(--bg-body); color: var(--text-main); line-height: 1.5; }
+        
+        /* Layout */
+        .u-container { margin: 0 auto; padding: 0 1rem; width: 100%; max-width: var(--container-width); }
+        .u-row { display: flex; flex-wrap: wrap; margin: -0.5rem; }
+        .u-col { padding: 0.5rem; width: 100%; }
+        
+        /* Grid system */
+        @media (min-width: 640px) {
+            .u-col-sm-6 { width: 50%; }
+            .u-row-form > .u-col { width: 50%; } 
+            .u-nav-actions { display: flex !important; }
+            .u-nav-mobile-btn { display: none; }
+            .u-header-row { display: flex; flex-direction: row; justify-content: space-between; align-items: center; }
+            .u-header-row .u-header-col-right { margin-top: 0; }
+        }
+        @media (min-width: 1024px) {
+            .u-col-lg-3 { width: 25%; }
+        }
+
+        /* Nav */
+        .u-nav-wrapper { background-color: var(--bg-surface); box-shadow: var(--shadow); position: sticky; top: 0; z-index: 10; }
+        .u-nav-content { display: flex; justify-content: space-between; align-items: center; height: 4rem; }
+        .u-nav-left { display: flex; align-items: center; }
+        .u-nav-brand { font-size: 1.25rem; font-weight: 700; margin-right: 2rem; color: var(--text-main); text-decoration: none; }
+        .u-nav-links { display: none; gap: 1rem; }
+        @media (min-width: 640px) { .u-nav-links { display: flex; } }
+        .u-nav-link { color: var(--text-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; padding: 0.25rem 0; border-bottom: 2px solid transparent; }
+        .u-nav-link:hover { color: var(--text-main); border-bottom-color: var(--border-color); }
+        .u-nav-link.u-active { color: var(--text-main); border-bottom-color: var(--primary); }
+        .u-nav-actions { display: none; align-items: center; }
+        .u-nav-mobile-btn { background: none; border: none; cursor: pointer; padding: 0.5rem; color: var(--text-muted); }
+        
+        .u-nav-mobile-menu { display: none; padding-bottom: 1rem; border-top: 1px solid var(--border-color); }
+        .u-nav-mobile-links { display: flex; flex-direction: column; gap: 0.5rem; padding: 0.5rem 0; }
+        .u-nav-mobile-links .u-nav-link { padding: 0.5rem; border-bottom: none; border-left: 4px solid transparent; }
+        .u-nav-mobile-links .u-nav-link.u-active { background-color: #f3f4f6; border-left-color: var(--primary); }
+        .u-nav-mobile-actions { padding: 0.5rem; }
+
+        /* Buttons */
+        .u-btn { display: inline-flex; justify-content: center; align-items: center; padding: 0.5rem 1rem; font-size: 0.875rem; font-weight: 500; border-radius: var(--radius-md); cursor: pointer; border: 1px solid transparent; text-decoration: none; transition: background-color 0.2s; }
+        .u-btn-primary { background-color: var(--primary); color: white; box-shadow: var(--shadow-sm); }
+        .u-btn-primary:hover { background-color: var(--primary-hover); }
+        .u-btn-secondary { background-color: white; color: var(--text-main); border-color: var(--border-color); box-shadow: var(--shadow-sm); }
+        .u-btn-secondary:hover { background-color: #f9fafb; }
+        .u-w-full { width: 100%; }
+
+        /* Header */
+        .u-header-wrapper { background-color: var(--bg-surface); box-shadow: var(--shadow-sm); margin-top: 1.5rem; padding: 1.5rem 0; }
+        .u-header-row { display: flex; flex-direction: column; }
+        .u-page-title { font-size: 1.875rem; font-weight: 700; margin-bottom: 0.25rem; line-height: 1.2; }
+        .u-page-subtitle { color: var(--text-muted); font-size: 0.875rem; }
+        .u-header-actions { display: flex; gap: 0.75rem; }
+        .u-header-col-right { margin-top: 1rem; }
+
+        /* Main Content */
+        .u-main-wrapper { padding: 2rem 0; }
+        
+        /* Cards */
+        .u-card { background-color: var(--bg-surface); border-radius: var(--radius-lg); box-shadow: var(--shadow); height: 100%; padding: 1.25rem; }
+        .u-card-label { color: var(--text-muted); font-size: 0.875rem; font-weight: 500; margin-bottom: 0.25rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .u-card-value { font-size: 1.875rem; font-weight: 600; color: var(--text-main); }
+        
+        .u-section-cards, .u-section-activity, .u-section-form { margin-bottom: 2rem; }
+        .u-section-title { font-size: 1.125rem; font-weight: 500; margin-bottom: 1rem; }
+        
+        /* Activity List */
+        .u-box { background-color: var(--bg-surface); box-shadow: var(--shadow); border-radius: var(--radius-lg); overflow: hidden; }
+        .u-box-header { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border-color); }
+        .u-input, .u-select, .u-textarea { width: 100%; padding: 0.5rem 0.75rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-family: inherit; font-size: 0.875rem; }
+        .u-input:focus, .u-select:focus, .u-textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary); }
+        .u-search-input { max-width: 300px; }
+        .u-list-group { list-style: none; }
+        .u-list-item { padding: 1rem; border-bottom: 1px solid var(--border-color); font-size: 0.875rem; font-weight: 500; }
+        .u-list-item:last-child { border-bottom: none; }
+        .u-list-item:hover { background-color: #f9fafb; cursor: pointer; }
+        
+        /* Form */
+        .u-form-group { margin-bottom: 1rem; }
+        .u-form-label { display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 0.25rem; }
+        .u-form-actions { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+
+        /* Footer */
+        .u-footer-wrapper { background-color: var(--bg-surface); border-top: 1px solid var(--border-color); padding: 1.5rem 0; margin-top: auto; }
+        .u-footer-row { display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 1rem; }
+        @media (min-width: 768px) { .u-footer-row { flex-direction: row; } }
+        .u-copyright { color: var(--text-muted); font-size: 0.875rem; }
+        .u-footer-links { display: flex; gap: 1.5rem; list-style: none; }
+        .u-footer-link { color: var(--text-muted); text-decoration: none; font-size: 0.875rem; }
+        .u-footer-link:hover { color: var(--text-main); }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="u-nav-wrapper" data-section="navigation">
+        <div class="u-container">
+            <div class="u-nav-content">
+                <div class="u-nav-left">
+                    <a href="#" class="u-nav-brand">AdminPanel X</a>
+                    <div class="u-nav-links">
+                        <a href="#" class="u-nav-link u-active">Dashboard</a>
+                        <a href="#" class="u-nav-link">Reports</a>
+                        <a href="#" class="u-nav-link">Users</a>
+                        <a href="#" class="u-nav-link">Settings</a>
+                    </div>
+                </div>
+                <div class="u-nav-right">
+                    <div class="u-nav-actions">
+                        <button type="button" class="u-btn u-btn-primary">Create New</button>
+                    </div>
+                    <button type="button" class="u-nav-mobile-btn" id="mobile-menu-btn">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div class="u-nav-mobile-menu" id="mobile-menu" style="display: none;">
+                <div class="u-nav-mobile-links">
+                    <a href="#" class="u-nav-link u-active">Dashboard</a>
+                    <a href="#" class="u-nav-link">Reports</a>
+                    <a href="#" class="u-nav-link">Users</a>
+                    <a href="#" class="u-nav-link">Settings</a>
+                </div>
+                <div class="u-nav-mobile-actions">
+                    <button type="button" class="u-btn u-btn-primary u-w-full">Create New</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="u-header-wrapper" data-section="header">
+        <div class="u-container">
+            <div class="u-header-row">
+                <div class="u-header-col-left">
+                    <h1 class="u-page-title">Project Overview</h1>
+                    <p class="u-page-subtitle">Monitor key interface elements and manage dashboard content.</p>
+                </div>
+                <div class="u-header-col-right">
+                    <div class="u-header-actions">
+                        <button type="button" class="u-btn u-btn-secondary">Export</button>
+                        <button type="button" class="u-btn u-btn-primary">Create New</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="u-main-wrapper">
+        <div class="u-container">
+            <!-- Cards -->
+            <div class="u-section-cards" data-section="summary-cards">
+                <div class="u-row">
+                    <div class="u-col u-col-sm-6 u-col-lg-3">
+                        <div class="u-card">
+                            <div class="u-card-body">
+                                <dl>
+                                    <dt class="u-card-label">Active Users</dt>
+                                    <dd class="u-card-value">1,248</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="u-col u-col-sm-6 u-col-lg-3">
+                        <div class="u-card">
+                            <div class="u-card-body">
+                                <dl>
+                                    <dt class="u-card-label">New Orders</dt>
+                                    <dd class="u-card-value">86</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="u-col u-col-sm-6 u-col-lg-3">
+                        <div class="u-card">
+                            <div class="u-card-body">
+                                <dl>
+                                    <dt class="u-card-label">Open Tasks</dt>
+                                    <dd class="u-card-value">19</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="u-col u-col-sm-6 u-col-lg-3">
+                        <div class="u-card">
+                            <div class="u-card-body">
+                                <dl>
+                                    <dt class="u-card-label">Conversion Rate</dt>
+                                    <dd class="u-card-value">4.8%</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main content section -->
+            <div class="u-section-activity" data-section="activity">
+                <h2 class="u-section-title">Recent Activity</h2>
+                <div class="u-box">
+                    <div class="u-box-header">
+                        <div class="u-search-wrap">
+                            <input type="text" class="u-input u-search-input" placeholder="Search activity...">
+                        </div>
+                    </div>
+                    <ul class="u-list-group">
+                        <li class="u-list-item">User account updated</li>
+                        <li class="u-list-item">New request submitted</li>
+                        <li class="u-list-item">Invoice approved</li>
+                        <li class="u-list-item">Profile edited</li>
+                        <li class="u-list-item">Report generated</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Form section -->
+            <div class="u-section-form" data-section="form">
+                <div class="u-box">
+                    <div class="u-box-body">
+                        <h3 class="u-section-title">Quick Contact / New Entry</h3>
+                        <form class="u-form">
+                            <div class="u-row u-row-form">
+                                <div class="u-col">
+                                    <div class="u-form-group">
+                                        <label for="fullname" class="u-form-label">Full Name</label>
+                                        <input type="text" id="fullname" class="u-input">
+                                    </div>
+                                </div>
+                                <div class="u-col">
+                                    <div class="u-form-group">
+                                        <label for="email" class="u-form-label">Email Address</label>
+                                        <input type="email" id="email" class="u-input">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="u-form-group">
+                                <label for="category" class="u-form-label">Category</label>
+                                <select id="category" class="u-select">
+                                    <option>Option 1</option>
+                                    <option>Option 2</option>
+                                </select>
+                            </div>
+                            <div class="u-form-group">
+                                <label for="message" class="u-form-label">Message</label>
+                                <textarea id="message" rows="3" class="u-textarea"></textarea>
+                            </div>
+                            <div class="u-form-actions">
+                                <button type="submit" class="u-btn u-btn-primary">Submit</button>
+                                <button type="button" class="u-btn u-btn-secondary">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="u-footer-wrapper" data-section="footer">
+        <div class="u-container">
+            <div class="u-footer-row">
+                <div class="u-footer-col-left">
+                    <p class="u-copyright">&copy; 2026 AdminPanel X</p>
+                </div>
+                <div class="u-footer-col-right">
+                    <ul class="u-footer-links">
+                        <li><a href="#" class="u-footer-link">Privacy</a></li>
+                        <li><a href="#" class="u-footer-link">Contact</a></li>
+                        <li><a href="#" class="u-footer-link">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>
