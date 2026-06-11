@@ -1,6 +1,6 @@
 # CSS Frameworks Thesis Evaluation
 
-This repository contains implementation artefacts and prompt documentation prepared for the bachelor thesis: **"An Empirical Evaluation and Visual Parity Analysis of Modern CSS Frameworks"**.
+This repository contains implementation artefacts and prompt documentation prepared for the bachelor thesis: **"“Evaluation of CSS Frameworks in Modern Web Design and Development"**.
 
 The repository supports the implementation part of the thesis by providing the standardized reference prototype, equivalent CSS framework implementations, front-end integration validation fragments, and prompts used during Antigravity-assisted implementation.
 
